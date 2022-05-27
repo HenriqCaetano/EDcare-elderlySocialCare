@@ -16,3 +16,7 @@ TIPO CUIDADOR FEITO
 TIPO localização FEITO
 -longitude(float)
 -latitude(float)
+
+
+
+GIT : Configurado
