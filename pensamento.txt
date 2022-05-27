@@ -1,0 +1,18 @@
+TIPO IDOSO
+-nome
+-lista de amigos
+-lista de cuidadores
+-sensor de febre(float)
+-sensor de queda(int)
+-informação sobre morte(int)
+-contador de febres baixas(int)
+-localização(tad)
+
+
+TIPO CUIDADOR FEITO
+-localização(tad)
+-nome
+
+TIPO localização FEITO
+-longitude(float)
+-latitude(float)
