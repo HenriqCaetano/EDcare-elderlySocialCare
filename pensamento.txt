@@ -9,6 +9,13 @@ TIPO IDOSO
 -localização(tad)
 
 
+TIPO LISTA DE IDOSOS
+-ponteiro para o proximo
+-IDOSO
+-sentinela
+
+TUPO LISTA DE CUIDADOR
+
 TIPO CUIDADOR FEITO
 -localização(tad)
 -nome
