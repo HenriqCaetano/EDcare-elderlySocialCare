@@ -3,17 +3,21 @@
 
 typedef struct idoso Idoso;
 
-Idoso* inicIdoso(char* nome, float temperatura, int queda, int morte, int contaFebre,
-float latitude, float longitude, ListCuidador* cuidadores, ListIdoso* amigos);
-
-void adiciona_Amigo(Idoso* idoso, Idoso* amigo);
-
-void retira_Amigo(Idoso* idoso, Idoso* amigo);
-
-void adicionaCuidador(Idoso* idoso, Cuidador* cuidador);
+Idoso* inicIdoso(char* nome);
 
 
-void atualizaIdoso();
+void atualizaTemperaturaIdoso(Idoso* idoso, float temperatura);
+
+void atualizaQuedaIdoso(Idoso* idoso, int queda);
+
+void atualizaMorteIdoso(Idoso* idoso, int morte);
+
+void atualizaLocalizacaoIdoso(Idoso* idoso, float latitude, float longitude);
+
+void incrementaContaFebreIdoso(Idoso* idoso);
+
+void imprimeIdoso(Idoso* idoso);
+
 
 void faleceIdoso(Idoso* idoso);
 

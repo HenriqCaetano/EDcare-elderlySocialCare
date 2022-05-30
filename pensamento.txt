@@ -9,12 +9,12 @@ TIPO IDOSO
 -localização(tad)
 
 
-TIPO LISTA DE IDOSOS
+TIPO LISTA DE IDOSOS FEITO
 -ponteiro para o proximo
 -IDOSO
 -sentinela
 
-TUPO LISTA DE CUIDADOR
+TUPO LISTA DE CUIDADOR 
 
 TIPO CUIDADOR FEITO
 -localização(tad)
@@ -27,4 +27,5 @@ TIPO localização FEITO
 
 
 GIT : Configurado
-Git teste no labgrad: Feito?
+Git teste no labgrad: Feito? FEITO !!
+

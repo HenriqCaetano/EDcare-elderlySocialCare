@@ -5,7 +5,7 @@
 
 typedef struct cuidador Cuidador;
 
-Cuidador* inic_Cuidador(Localizacao* local, char* nome);
+Cuidador* inic_Cuidador(float latitude, float longitude, char* nome);
 
 void destroiCuidador(Cuidador* cuidador);
 

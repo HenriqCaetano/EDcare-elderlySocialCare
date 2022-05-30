@@ -18,6 +18,11 @@ Localizacao* inicLocal(float latitude, float longitude){
     return local;
 }
 
+void atualizaLocalizacao(Localizacao* local,float latitude, float longitude){
+    local->latitude = latitude;
+    local->longitude = longitude;
+}
+
 float calculaDistancia(Localizacao* prim, Localizacao* seg){
     return  sqrt(pow((prim->latitude - seg->latitude),2) + pow((prim->longitude - seg->longitude),2));
 }
