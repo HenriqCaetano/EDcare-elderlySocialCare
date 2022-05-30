@@ -27,3 +27,4 @@ TIPO localização FEITO
 
 
 GIT : Configurado
+Git teste no labgrad: Feito?
