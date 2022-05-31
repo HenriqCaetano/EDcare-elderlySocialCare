@@ -69,5 +69,9 @@ void imprimeIdoso(Idoso* idoso){
     printf("NOME: %s\n", idoso->nome);
 }
 
+char* retornaNomeIdoso(Idoso* idoso){
+    return idoso->nome;
+}
+
 void faleceIdoso(Idoso* idoso);
 

@@ -18,6 +18,7 @@ void incrementaContaFebreIdoso(Idoso* idoso);
 
 void imprimeIdoso(Idoso* idoso);
 
+char* retornaNomeIdoso(Idoso* idoso);
 
 void faleceIdoso(Idoso* idoso);
 

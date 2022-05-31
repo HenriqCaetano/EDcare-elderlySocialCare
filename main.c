@@ -12,14 +12,19 @@ int main(){
 
     ListIdoso* idosos = inicListaIdoso();
 
-    insereIdoso(idosos, a);
+    insereIdoso(idosos,a);
     insereIdoso(idosos,b);
     insereIdoso(idosos,c);
 
-    
+
     imprimeListaIdosos(idosos);
 
-    
+    printf("APÓS:\n");
 
+    retiraIdosoPorNome(idosos, c);
+    imprimeListaIdosos(idosos);
+
+    destroiListaIdoso(idosos);
+    
     return 0;
 }

@@ -2,6 +2,7 @@
 #include "listaIdoso.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 
 struct Cel{
@@ -49,6 +50,52 @@ void imprimeListaIdosos(ListIdoso* lista){
         imprimeIdoso(p->idoso);
 }
 
-void retiraIdosoPorNome(ListIdoso* lista, Idoso* idoso);
 
-void destroiListaIdoso(ListIdoso* lista);
+void retiraIdosoPorNome(ListIdoso* lista, Idoso* idoso){
+    Celula* p, *ant;
+
+    for(p = lista->prim; p!= NULL; p = p->prox){
+        if(strcmp(retornaNomeIdoso(idoso), retornaNomeIdoso(p->idoso)) == 0){
+            break;
+        }
+        ant = p;
+    }
+    if(p == NULL) return;//não encontrou
+
+    //se encontrou:
+    //caso unico da lista
+    if(lista->prim == lista->ult){
+        lista->prim = NULL;
+        lista->ult = NULL;
+        free(p);
+    }
+
+    //caso primeiro da lista
+    else if(p == lista->prim){
+        lista->prim = p->prox;
+        free(p);
+    }
+
+    //caso ultimo da lista
+    else if(p == lista->ult){
+        lista->ult = ant;
+        ant->prox = NULL;
+        free(p);
+    }
+    
+    //caso comum
+    else{
+        ant->prox = p->prox;
+        free(p);
+    }
+}
+
+void destroiListaIdoso(ListIdoso* lista){
+    Celula* p, *temp;
+
+    for(p= lista->prim;p != NULL; p = temp){
+        temp = p->prox;
+        free(p);
+    }
+    free(lista);
+}
