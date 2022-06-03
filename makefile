@@ -3,7 +3,7 @@ saida: main.o idoso.o cuidador.o listaIdoso.o listaCuidador.o local.o
 
 
 main.o: main.c idoso.h cuidador.h listaCuidador.h listaIdoso.h local.h
-	@gcc -o main.o main.c -c
+	@gcc -o main.o main.c -c 
 
 idoso.o: idoso.c idoso.h listaCuidador.h
 	@gcc -o idoso.o idoso.c -c

@@ -29,3 +29,15 @@ TIPO localização FEITO
 GIT : Configurado
 Git teste no labgrad: Feito? FEITO !!
 
+
+
+OBTENÇÃO DOS INPUTS: A FAZER
+    argv será o número de dados sensoriados a serem lidos
+    configuração inicial: apoio e cuidadores *FEITO
+    leitura em loop: sensor dos idosos, sensor dos cuidadores
+
+    ler o arquivo da rede de idosos, criar os idosos e criar a lista de amigos.
+    ler o arquivo de cuidadores, criar os cuidadores e criar a lista de cuidadores dentros dos idosos
+
+
+
