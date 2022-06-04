@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define _GNU_SOURCE
 #include "local.h"
 #include "idoso.h"
 #include "listaIdoso.h"
@@ -22,10 +23,9 @@ struct idoso
 
 Idoso* inicIdoso(char* nome){
     
-    Idoso* idoso = malloc(sizeof(idoso));
+    Idoso* idoso = (Idoso*) malloc(sizeof(Idoso));
 
-    idoso->nome = malloc(sizeof(nome));
-    idoso-> nome = nome;
+    idoso->nome = strdup(nome);
     idoso->temperatura= 0;
     idoso->queda = 0;
     idoso->morte = 0;
@@ -73,5 +73,13 @@ char* retornaNomeIdoso(Idoso* idoso){
     return idoso->nome;
 }
 
+void destroi_Idoso(Idoso* idoso){
+    if(idoso != NULL){
+        destroiLocal(idoso->local);
+        destroiListaCuidador(idoso->cuidadores);
+        destroiListaIdoso(idoso->amigos);
+        free(idoso->nome);
+        free(idoso);
+    }
+}   
 void faleceIdoso(Idoso* idoso);
-

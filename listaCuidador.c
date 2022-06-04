@@ -1,5 +1,6 @@
 #include "cuidador.h"
 #include "listaCuidador.h"
+#include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -8,17 +9,15 @@ struct Cel{
     struct Cel* prox;
 };
 
-typedef struct Cel Celula;
-
-
+typedef struct Cel CelulaC;
 
 struct listaCuidador{
-    Celula* prim;
-    Celula* ult;
+    CelulaC* prim;
+    CelulaC* ult;
 };
 
 ListCuidador* inicListaCuidador(){
-    ListCuidador* lista = malloc(sizeof(ListCuidador));
+    ListCuidador* lista = (ListCuidador*) malloc(sizeof(ListCuidador));
 
     lista->prim = NULL;
     lista->ult = NULL;
@@ -26,8 +25,76 @@ ListCuidador* inicListaCuidador(){
     return lista;
 }
 
-void insereCuidador(ListCuidador* lista,Cuidador* cuidador);
+void insereCuidador(ListCuidador* lista, char* nome){
+    Cuidador* cuidador = inic_Cuidador(nome);
+    CelulaC* nova = (CelulaC*)malloc(sizeof(CelulaC));
+    nova->cuidador = cuidador;
+    nova->prox = NULL;
 
-void retiraCuidadorPorNome(ListCuidador* lista,Cuidador* cuidador);
+    if(lista->prim == NULL && lista->ult == NULL){//caso lista vazia
+        lista->prim = nova;
+        lista->ult = nova;
+    }
+    else{//caso comum
+        lista->ult->prox = nova;
+        lista->ult = nova;
+    }
 
-void destroiListaCuidador(ListCuidador* lista);
+}
+
+void retiraCuidadorPorNome(ListCuidador* lista,char* nome){
+    CelulaC* p, *ant;
+
+    for(p = lista->prim; p!= NULL; p = p->prox){
+        if(strcmp(nome, retornaNomeCuidador(p->cuidador)) == 0){
+            break;
+        }
+        ant = p;
+    }
+    if(p == NULL) return;//não encontrou
+
+    //se encontrou:
+    //caso unico da lista
+    if(lista->prim == lista->ult){
+        lista->prim = NULL;
+        lista->ult = NULL;
+        free(p);
+    }
+
+    //caso primeiro da lista
+    else if(p == lista->prim){
+        lista->prim = p->prox;
+        free(p);
+    }
+
+    //caso ultimo da lista
+    else if(p == lista->ult){
+        lista->ult = ant;
+        ant->prox = NULL;
+        free(p);
+    }
+    
+    //caso comum
+    else{
+        ant->prox = p->prox;
+        free(p);
+    }
+}
+
+void imprimeListaCuidador(ListCuidador* lista){
+    CelulaC* p = lista->prim;
+
+    for(p = lista->prim; p!= NULL; p = p->prox)
+        imprimeCuidador(p->cuidador);
+}
+
+void destroiListaCuidador(ListCuidador* lista){
+    CelulaC* p, *temp;
+
+    for(p= lista->prim;p != NULL; p = temp){
+        temp = p->prox;
+        destroiCuidador(p->cuidador);
+        free(p);
+    }
+    free(lista);
+}

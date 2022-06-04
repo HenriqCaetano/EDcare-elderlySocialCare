@@ -5,7 +5,11 @@
 
 typedef struct cuidador Cuidador;
 
-Cuidador* inic_Cuidador(float latitude, float longitude, char* nome);
+Cuidador* inic_Cuidador(char* nome);
+
+char* retornaNomeCuidador(Cuidador* cuidador);
+
+void imprimeCuidador(Cuidador* cuidador);
 
 void destroiCuidador(Cuidador* cuidador);
 

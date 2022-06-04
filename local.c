@@ -10,7 +10,7 @@ struct local{
 };
 
 Localizacao* inicLocal(float latitude, float longitude){
-    Localizacao* local = malloc(sizeof(Localizacao));
+    Localizacao* local = (Localizacao*)malloc(sizeof(Localizacao));
 
     local ->latitude = latitude;
     local->longitude = longitude;

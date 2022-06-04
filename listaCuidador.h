@@ -7,9 +7,11 @@ typedef struct listaCuidador ListCuidador;
 
 ListCuidador* inicListaCuidador();
 
-void insereCuidador(ListCuidador* lista,Cuidador* cuidador);
+void insereCuidador(ListCuidador* lista,char* nome);
 
-void retiraCuidadorPorNome(ListCuidador* lista,Cuidador* cuidador);
+void retiraCuidadorPorNome(ListCuidador* lista,char* nome);
+
+void imprimeListaCuidador(ListCuidador* lista);
 
 void destroiListaCuidador(ListCuidador* lista);
 

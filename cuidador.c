@@ -3,19 +3,29 @@
 #include <string.h>
 #include "cuidador.h"
 #include "local.h"
+#include <stdio.h>
+
 
 struct cuidador{
     Localizacao* local;
     char* nome;
 };
 
-Cuidador* inic_Cuidador(float latitude, float longitude, char* nome){
-    Cuidador* cuidador = malloc(sizeof(Cuidador));
+Cuidador* inic_Cuidador(char* nome){
+    Cuidador* cuidador = (Cuidador*)malloc(sizeof(Cuidador));
 
-    cuidador->local = inicLocal(latitude,longitude);
     cuidador->nome = strdup(nome);
+    cuidador->local = inicLocal(0,0);
     
     return cuidador;
+}
+
+void imprimeCuidador(Cuidador* cuidador){
+    printf("NOME CUIDADOR: %s\n",cuidador->nome);
+}
+
+char* retornaNomeCuidador(Cuidador* cuidador){
+    return cuidador->nome;
 }
 
 void destroiCuidador(Cuidador* cuidador){

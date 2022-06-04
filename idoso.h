@@ -20,6 +20,8 @@ void imprimeIdoso(Idoso* idoso);
 
 char* retornaNomeIdoso(Idoso* idoso);
 
+void destroi_Idoso(Idoso* idoso);
+
 void faleceIdoso(Idoso* idoso);
 
 

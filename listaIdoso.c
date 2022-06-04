@@ -9,17 +9,17 @@ struct Cel{
     Idoso* idoso;
     struct Cel* prox;
 };
-typedef struct Cel Celula;
+typedef struct Cel CelulaI;
 
 
 struct listaIdoso{
-    Celula* prim;
-    Celula* ult;    
+    CelulaI* prim;
+    CelulaI* ult;    
 };
 
 
 ListIdoso* inicListaIdoso(){
-    ListIdoso* lista = malloc(sizeof(ListIdoso));
+    ListIdoso* lista = (ListIdoso*)malloc(sizeof(ListIdoso));
     
     lista->prim = NULL;
     lista->ult = NULL;
@@ -28,8 +28,9 @@ ListIdoso* inicListaIdoso(){
 }
 
 //insere sempre na última posição
-void insereIdoso(ListIdoso* lista, Idoso* idoso){
-    Celula* nova = malloc(sizeof(Celula));
+void insereIdoso(ListIdoso* lista, char* nome){
+    Idoso* idoso = inicIdoso(nome);
+    CelulaI* nova = (CelulaI*)malloc(sizeof(CelulaI));
     nova->idoso = idoso;
     nova->prox = NULL;
 
@@ -44,18 +45,18 @@ void insereIdoso(ListIdoso* lista, Idoso* idoso){
 }
 
 void imprimeListaIdosos(ListIdoso* lista){
-    Celula* p = lista->prim;
+    CelulaI* p = lista->prim;
 
     for(p = lista->prim; p!= NULL; p = p->prox)
         imprimeIdoso(p->idoso);
 }
 
 
-void retiraIdosoPorNome(ListIdoso* lista, Idoso* idoso){
-    Celula* p, *ant;
+void retiraIdosoPorNome(ListIdoso* lista, char* nome){
+    CelulaI* p, *ant;
 
     for(p = lista->prim; p!= NULL; p = p->prox){
-        if(strcmp(retornaNomeIdoso(idoso), retornaNomeIdoso(p->idoso)) == 0){
+        if(strcmp(nome, retornaNomeIdoso(p->idoso)) == 0){
             break;
         }
         ant = p;
@@ -90,11 +91,13 @@ void retiraIdosoPorNome(ListIdoso* lista, Idoso* idoso){
     }
 }
 
+//libera o idoso junto, uso na lista mestre do programa
 void destroiListaIdoso(ListIdoso* lista){
-    Celula* p, *temp;
+    CelulaI* p, *temp;
 
     for(p= lista->prim;p != NULL; p = temp){
         temp = p->prox;
+        destroi_Idoso(p->idoso);
         free(p);
     }
     free(lista);

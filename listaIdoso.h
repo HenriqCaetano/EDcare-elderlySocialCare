@@ -8,11 +8,11 @@ typedef struct listaIdoso ListIdoso;
 
 ListIdoso* inicListaIdoso();
 
-void insereIdoso(ListIdoso* lista, Idoso* idoso);
+void insereIdoso(ListIdoso* lista, char* nome);
 
 void imprimeListaIdosos(ListIdoso* lista);
 
-void retiraIdosoPorNome(ListIdoso* lista, Idoso* idoso);
+void retiraIdosoPorNome(ListIdoso* lista, char* nome);
 
 void destroiListaIdoso(ListIdoso* lista);
 
