@@ -9,6 +9,7 @@
 
 #define entradas "./Testes/Testes/Teste1/Entradas"
 
+
 int main(int argc, char* argv){
     char *atual, *prox, input[50];
 
@@ -27,12 +28,9 @@ int main(int argc, char* argv){
     atual = strtok(input,";");
     while(atual){
         //percorre os idosos da rede, criando a lista que os contém
-        insereIdoso(idosos,atual);
+        insereElemento(idosos,atual);
         atual = strtok(NULL,";");
     }
-
-    imprimeListaIdosos(idosos);
-    printf("\n");
 
     //percorrer as amizades!
     while(!feof(arqApoio)){
@@ -41,13 +39,10 @@ int main(int argc, char* argv){
         atual = strtok(input,";");
         while(atual){
             prox = strtok(NULL,";");//obtém o segundo integrante da dupla
-            printf("%s e %s", atual,prox);
             //faz a amizade entre os dois idosos!
-            
-
+            cria_AmizadeIdosos(idosos,atual,prox);
             atual = strtok(NULL,";");//vai para a proxima dupla
         }
-        printf("\n");
         fscanf(arqApoio,"\n");
     }
     fclose(arqApoio);//finaliza o uso do arquivo de apoio -> TA DANDO ERRO?
@@ -64,29 +59,33 @@ int main(int argc, char* argv){
 
     while(atual){
         //percorre os cuidadores da rede, criando a lista que os contém
-        insereCuidador(cuidadores,atual);
+        insere_ElementoCuidador(cuidadores,atual);
         atual = strtok(NULL,";");
     }
-    imprimeListaCuidador(cuidadores);
-    printf("\n");
-
+    
+    Idoso* idosoAlvo;
+    Cuidador* cuidadorAlvo;
     while(!feof(arqCuidadores)){
         fscanf(arqCuidadores,"%s", input);
         atual = strtok(input,";");//obtem o idoso alvo
         prox = strtok(NULL,";");//obtem o primeiro cuidador
+        idosoAlvo = buscaIdoso(idosos,atual);
         while(prox){
-            printf("%s: %s",atual,prox);
             //adicionar o cuidador alvo à lista de cuidadores do idoso alvo
-
-
-
+            cuidadorAlvo = buscaCuidador(cuidadores,prox);
+            insereCuidador(obtemCuidadoresIdoso(idosoAlvo),cuidadorAlvo);
             prox = strtok(NULL,";");
         }
         fscanf(arqCuidadores,"\n");
-        printf("\n");
     }
     fclose(arqCuidadores);//finaliza o uso do arquivo de apoio
-    destroiListaCuidador(cuidadores);
-    destroiListaIdoso(idosos);
+
+    //neste momento, a rede está configurada e pronta para as entradas sensoriadas!
+    
+
+
+
+    //destroiListaCuidador(cuidadores);
+    //destroiListaIdoso(idosos);
     return 0;
 }

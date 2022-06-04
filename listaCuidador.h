@@ -7,7 +7,13 @@ typedef struct listaCuidador ListCuidador;
 
 ListCuidador* inicListaCuidador();
 
-void insereCuidador(ListCuidador* lista,char* nome);
+//cria o tipo cuidador dentro da função
+void insere_ElementoCuidador(ListCuidador* lista,char* nome);
+
+//apenas insere o cuidador na lista
+void insereCuidador(ListCuidador* lista, Cuidador* cuidador);
+
+Cuidador* buscaCuidador(ListCuidador* lista, char* nome);
 
 void retiraCuidadorPorNome(ListCuidador* lista,char* nome);
 

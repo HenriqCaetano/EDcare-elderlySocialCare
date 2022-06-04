@@ -25,7 +25,7 @@ ListCuidador* inicListaCuidador(){
     return lista;
 }
 
-void insereCuidador(ListCuidador* lista, char* nome){
+void insere_ElementoCuidador(ListCuidador* lista, char* nome){
     Cuidador* cuidador = inic_Cuidador(nome);
     CelulaC* nova = (CelulaC*)malloc(sizeof(CelulaC));
     nova->cuidador = cuidador;
@@ -39,7 +39,30 @@ void insereCuidador(ListCuidador* lista, char* nome){
         lista->ult->prox = nova;
         lista->ult = nova;
     }
+}
 
+void insereCuidador(ListCuidador* lista, Cuidador* cuidador){
+    CelulaC* nova = (CelulaC*)malloc(sizeof(CelulaC));
+    nova->cuidador = cuidador;
+    nova->prox = NULL;
+
+    if(lista->prim == NULL && lista->ult == NULL){//caso lista vazia
+        lista->prim = nova;
+        lista->ult = nova;
+    }
+    else{//caso comum
+        lista->ult->prox = nova;
+        lista->ult = nova;
+    }
+}
+
+Cuidador* buscaCuidador(ListCuidador* lista, char* nome){
+    CelulaC* p;
+
+    for(p=lista->prim; p != NULL; p = p->prox){
+        if(strcmp(retornaNomeCuidador(p->cuidador),nome) == 0) break;
+    }
+    return p->cuidador;
 }
 
 void retiraCuidadorPorNome(ListCuidador* lista,char* nome){

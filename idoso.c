@@ -69,6 +69,15 @@ void imprimeIdoso(Idoso* idoso){
     printf("NOME: %s\n", idoso->nome);
 }
 
+ListIdoso* obtemAmigosIdoso(Idoso* idoso){
+    return idoso->amigos;
+}
+
+struct listaCuidador* obtemCuidadoresIdoso(Idoso* idoso){
+    return idoso->cuidadores;
+}
+
+
 char* retornaNomeIdoso(Idoso* idoso){
     return idoso->nome;
 }
