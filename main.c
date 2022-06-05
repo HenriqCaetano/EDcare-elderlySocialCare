@@ -81,8 +81,8 @@ int main(int argc, char* argv){
     fclose(arqCuidadores);//finaliza o uso do arquivo de apoio
 
     //neste momento, a rede está configurada e pronta para as entradas sensoriadas!
-    
 
+    
 
 
     //destroiListaCuidador(cuidadores);

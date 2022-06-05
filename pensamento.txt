@@ -7,6 +7,7 @@ TIPO IDOSO
 -informação sobre morte(int)
 -contador de febres baixas(int)
 -localização(tad)
+-arquivo de entradas
 
 
 TIPO LISTA DE IDOSOS FEITO
@@ -19,6 +20,7 @@ TUPO LISTA DE CUIDADOR
 TIPO CUIDADOR FEITO
 -localização(tad)
 -nome
+-arquivo de entradas
 
 TIPO localização FEITO
 -longitude(float)

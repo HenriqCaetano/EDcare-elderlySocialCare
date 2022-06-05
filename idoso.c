@@ -8,7 +8,6 @@
 #include "listaCuidador.h"
 
 
-
 struct idoso
 {
     char* nome;
@@ -19,6 +18,8 @@ struct idoso
     Localizacao* local;
     ListCuidador* cuidadores;
     ListIdoso* amigos;
+    //FILE* entrada;
+    //FILE* saida;
 };
 
 Idoso* inicIdoso(char* nome){
