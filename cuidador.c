@@ -5,10 +5,12 @@
 #include "local.h"
 #include <stdio.h>
 
+#define input "./Testes/Testes/Teste1/Entradas/"
 
 struct cuidador{
     Localizacao* local;
     char* nome;
+    FILE* arqEnt;
 };
 
 Cuidador* inic_Cuidador(char* nome){
@@ -16,7 +18,14 @@ Cuidador* inic_Cuidador(char* nome){
 
     cuidador->nome = strdup(nome);
     cuidador->local = inicLocal(0,0);
-    
+
+    char in[100] = "\0";
+    strcat(in,input);
+    strcat(in,nome);
+    strcat(in,".txt");
+
+    cuidador->arqEnt = fopen(in,"r");
+
     return cuidador;
 }
 

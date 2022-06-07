@@ -7,6 +7,8 @@
 #include "listaIdoso.h"
 #include "listaCuidador.h"
 
+#define input "./Testes/Testes/Teste1/Entradas/"
+#define output "./Testes/Testes/Teste1/outputs/"
 
 struct idoso
 {
@@ -18,8 +20,8 @@ struct idoso
     Localizacao* local;
     ListCuidador* cuidadores;
     ListIdoso* amigos;
-    //FILE* entrada;
-    //FILE* saida;
+    FILE* arqEnt;
+    FILE* arqSaida;
 };
 
 Idoso* inicIdoso(char* nome){
@@ -35,6 +37,18 @@ Idoso* inicIdoso(char* nome){
 
     idoso->cuidadores = inicListaCuidador();
     idoso->amigos = inicListaIdoso();
+
+    char in[100] = "\0", out[100] = "\0";
+    strcat(in,input);
+    strcat(in,nome);
+    strcat(in,".txt");
+
+    strcat(out,output);
+    strcat(out,nome);
+    strcat(out,"-saida.txt");
+
+    idoso->arqEnt = fopen(in,"r");
+    idoso->arqSaida = fopen(out,"w");
 
     return idoso;
 }
@@ -74,7 +88,7 @@ ListIdoso* obtemAmigosIdoso(Idoso* idoso){
     return idoso->amigos;
 }
 
-struct listaCuidador* obtemCuidadoresIdoso(Idoso* idoso){
+ListCuidador* obtemCuidadoresIdoso(Idoso* idoso){
     return idoso->cuidadores;
 }
 

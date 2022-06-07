@@ -148,7 +148,6 @@ void retiraIdosoPorNome(ListIdoso* lista, char* nome){
 }
 
 
-
 //libera o idoso junto, uso na lista mestre do programa
 void destroiListaIdoso(ListIdoso* lista){
     CelulaI* p, *temp;
