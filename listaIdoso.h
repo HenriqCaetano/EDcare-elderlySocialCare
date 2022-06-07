@@ -11,6 +11,8 @@ void insereElemento(ListIdoso* lista, char* nome);
 
 void insereIdoso(ListIdoso* lista, Idoso* idoso);
 
+void atualizaDadosListaIdoso(ListIdoso* lista);
+
 Idoso* buscaIdoso(ListIdoso* lista, char* nome);
 
 void imprimeListaIdosos(ListIdoso* lista);

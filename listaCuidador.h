@@ -13,6 +13,8 @@ void insere_ElementoCuidador(ListCuidador* lista,char* nome);
 //apenas insere o cuidador na lista
 void insereCuidador(ListCuidador* lista, Cuidador* cuidador);
 
+void atualizaDadosListaCuidador(ListCuidador* lista);
+
 Cuidador* buscaCuidador(ListCuidador* lista, char* nome);
 
 void retiraCuidadorPorNome(ListCuidador* lista,char* nome);

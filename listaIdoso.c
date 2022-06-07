@@ -60,6 +60,14 @@ void insereIdoso(ListIdoso* lista, Idoso* idoso){
     }
 }
 
+void atualizaDadosListaIdoso(ListIdoso* lista){
+    CelulaI* atual;
+    for(atual=lista->prim; atual != NULL; atual=atual->prox){
+        //função que atualiza um idoso
+        atualizaIdoso(atual->idoso);
+    }
+}
+
 Idoso* buscaIdoso(ListIdoso* lista, char* nome){
     CelulaI *p;
 

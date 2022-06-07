@@ -10,7 +10,13 @@
 #define entradas "./Testes/Testes/Teste1/Entradas"
 
 
-int main(int argc, char* argv){
+int main(int argc, char* argv[]){
+    if(argc == 1){
+        printf("Necessário número de entradas sensoriadas!\n");
+        return 1;
+    }
+
+
     char *atual, *prox, input[50];
 
     //duas listas mestres!
@@ -81,6 +87,22 @@ int main(int argc, char* argv){
     fclose(arqCuidadores);//finaliza o uso do arquivo de apoio
 
     //neste momento, a rede está configurada e pronta para as entradas sensoriadas!
+
+    int i, sensoriadas;
+    sensoriadas = atoi(argv[1]);
+    //ciclo de leituras!
+    for(i=0; i<sensoriadas; i++){
+
+        //VERIFICAR SE OS DADOS OBTIDOS FORAM COMPATÍVEIS!!
+        //atualiza todos os idosos da lista mestre de idosos
+        atualizaDadosListaIdoso(idosos);
+
+        //atualiza todos os cuidadores da lista mestre de cuidadores
+        atualizaDadosListaCuidador(cuidadores);
+
+        //função para processar e escrever saídas - recebe a lista mestre de idosos!
+
+    }
 
     
 

@@ -53,29 +53,31 @@ Idoso* inicIdoso(char* nome){
     return idoso;
 }
 
-void atualizaTemperaturaIdoso(Idoso* idoso, float temperatura){
-    idoso->temperatura = temperatura;
-    return;
-}
+void atualizaIdoso(Idoso* idoso){
+    char* entrada, *dado;
+    float lat,lon;
+    fscanf(idoso->arqEnt,"%s",entrada);
+    //verifica se idoso morreu
+    if(!strcmp(entrada,"falecimento")){
+        idoso->morte = 1;
+        printf("%s morreu\n", idoso->nome);
+        return;
+    }
+    //se está vivo, lê as entradas sensoriadas
+    dado = strtok(entrada,";");//obtem a temperatura
+    idoso->temperatura = atof(dado);
 
-void atualizaQuedaIdoso(Idoso* idoso, int queda){
-    idoso->temperatura = queda;
-    return;
-}
+    dado = strtok(NULL,";"); //obtem a latitude
+    lat = atof(dado);
+    dado = strtok(NULL,";"); //obtem a longitude
+    lon = atof(dado);
+    atualizaLocalizacao(idoso->local,lat,lon);
 
-void atualizaMorteIdoso(Idoso* idoso, int morte){
-    idoso->temperatura = morte;
-    return;
-}
+    dado = strtok(NULL,";");//obtem o verificador de queda
+    idoso->queda = atoi(dado);
 
-void atualizaLocalizacaoIdoso(Idoso* idoso, float latitude, float longitude){
-    atualizaLocalizacao(idoso->local, latitude, longitude);
-    return;
-}
-
-void incrementaContaFebreIdoso(Idoso* idoso){//provavelmente necessita mudança!!
-    if(idoso->contaFebre == 3) idoso->contaFebre = 0;
-    else idoso->contaFebre++;
+    //VERIFICAR SE OS DADOS OBTIDOS FORAM COMPATÍVEIS!!
+    printf("%s atualizado!\n",idoso->nome);
     return;
 }
 

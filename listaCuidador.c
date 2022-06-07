@@ -56,6 +56,14 @@ void insereCuidador(ListCuidador* lista, Cuidador* cuidador){
     }
 }
 
+void atualizaDadosListaCuidador(ListCuidador* lista){
+    CelulaC* atual;
+
+    for(atual = lista->prim; atual != NULL; atual =atual->prox){
+        atualizaCuidador(atual->cuidador);
+    }
+}
+
 Cuidador* buscaCuidador(ListCuidador* lista, char* nome){
     CelulaC* p;
 

@@ -33,6 +33,22 @@ void imprimeCuidador(Cuidador* cuidador){
     printf("NOME CUIDADOR: %s\n",cuidador->nome);
 }
 
+void atualizaCuidador(Cuidador* cuidador){
+    char* entrada, *dado;
+    float lat,lon;
+    fscanf(cuidador->arqEnt,"%s", entrada);
+    
+    dado = strtok(entrada,";");//obtém a latitude
+    lat = atof(dado);
+    dado = strtok(NULL,";");
+    lon = atof(dado);
+    atualizaLocalizacao(cuidador->local,lat,lon);
+
+    //VERIFICAR SE OS DADOS OBTIDOS FORAM COMPATÍVEIS!!
+    printf("atualizou %s\n",cuidador->nome);
+    return;
+}
+
 char* retornaNomeCuidador(Cuidador* cuidador){
     return cuidador->nome;
 }

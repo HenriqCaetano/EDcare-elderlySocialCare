@@ -9,6 +9,8 @@ Cuidador* inic_Cuidador(char* nome);
 
 char* retornaNomeCuidador(Cuidador* cuidador);
 
+void atualizaCuidador(Cuidador* cuidador);
+
 void imprimeCuidador(Cuidador* cuidador);
 
 void destroiCuidador(Cuidador* cuidador);
