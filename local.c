@@ -18,6 +18,14 @@ Localizacao* inicLocal(float latitude, float longitude){
     return local;
 }
 
+float retornaLatitude(Localizacao* local){
+    return local->latitude;
+}
+
+float retornaLongitude(Localizacao* local){
+    return local->longitude;
+}
+
 void atualizaLocalizacao(Localizacao* local,float latitude, float longitude){
     local->latitude = latitude;
     local->longitude = longitude;

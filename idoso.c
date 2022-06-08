@@ -56,6 +56,7 @@ Idoso* inicIdoso(char* nome){
 void atualizaIdoso(Idoso* idoso){
     char* entrada, *dado;
     float lat,lon;
+    int aux;
     fscanf(idoso->arqEnt,"%s",entrada);
     //verifica se idoso morreu
     if(!strcmp(entrada,"falecimento")){
@@ -73,11 +74,12 @@ void atualizaIdoso(Idoso* idoso){
     lon = atof(dado);
     atualizaLocalizacao(idoso->local,lat,lon);
 
-    dado = strtok(NULL,";");//obtem o verificador de queda
+    dado = strtok(NULL,"\n");//obtem o verificador de queda
     idoso->queda = atoi(dado);
+    //printf("%d", idoso->queda);
 
     //VERIFICAR SE OS DADOS OBTIDOS FORAM COMPATÍVEIS!!
-    printf("%s atualizado!\n",idoso->nome);
+    printf("%s: %d, %.2f, %.2f, %.2f\n",idoso->nome, idoso->queda, idoso->temperatura,retornaLatitude(idoso->local),retornaLongitude(idoso->local));
     return;
 }
 
