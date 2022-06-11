@@ -66,6 +66,33 @@ void atualizaDadosListaIdoso(ListIdoso* lista){
         //função que atualiza um idoso
         atualizaIdoso(atual->idoso);
     }
+    return;
+}
+
+void processaDadosListaIdoso(ListIdoso* lista){
+    CelulaI* atual;
+
+    for(atual = lista->prim; atual != NULL; atual = atual->prox){
+        //função para processar os dados de um idoso
+        processaDadosIdoso(atual->idoso);
+    }
+}
+
+char* obtemAmigoMaisProximo(ListIdoso* lista, Idoso* idoso){
+    CelulaI* atual;
+    float menorDistancia = 9999;//pode dar problema, talvez um valor maior resolve
+    float distAtual;
+    char* amigoProximo;
+    
+    for(atual= lista->prim; atual != NULL; atual=atual->prox){
+        distAtual = calculaDistancia(retornaLocalIdoso(atual->idoso),retornaLocalIdoso(idoso));
+
+        if(distAtual < menorDistancia){
+            amigoProximo = retornaNomeIdoso(atual->idoso);
+            menorDistancia = distAtual;
+        }
+    }
+    return amigoProximo;
 }
 
 Idoso* buscaIdoso(ListIdoso* lista, char* nome){

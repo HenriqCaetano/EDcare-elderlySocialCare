@@ -2,6 +2,7 @@
 #define ListCuidador_H
 
 #include "cuidador.h"
+#include "idoso.h"
 
 typedef struct listaCuidador ListCuidador;
 
@@ -16,6 +17,8 @@ void insereCuidador(ListCuidador* lista, Cuidador* cuidador);
 void atualizaDadosListaCuidador(ListCuidador* lista);
 
 Cuidador* buscaCuidador(ListCuidador* lista, char* nome);
+
+char* obtemCuidadorMaisProximo(ListCuidador* lista, Idoso* idoso);
 
 void retiraCuidadorPorNome(ListCuidador* lista,char* nome);
 

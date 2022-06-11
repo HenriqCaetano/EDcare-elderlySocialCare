@@ -101,8 +101,7 @@ int main(int argc, char* argv[]){
         atualizaDadosListaCuidador(cuidadores);
 
         //função para processar e escrever saídas - recebe a lista mestre de idosos!
-        
-
+        processaDadosListaIdoso(idosos);
     }
 
     

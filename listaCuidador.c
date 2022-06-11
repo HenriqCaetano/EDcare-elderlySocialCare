@@ -1,5 +1,6 @@
 #include "cuidador.h"
 #include "listaCuidador.h"
+#include "idoso.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -71,6 +72,23 @@ Cuidador* buscaCuidador(ListCuidador* lista, char* nome){
         if(strcmp(retornaNomeCuidador(p->cuidador),nome) == 0) break;
     }
     return p->cuidador;
+}
+
+char* obtemCuidadorMaisProximo(ListCuidador* lista, Idoso* idoso){
+    CelulaC* atual;
+    float menorDistancia = 9999;//pode dar problema, talvez um valor maior resolve
+    float distAtual;
+    char* cuidadorProximo;
+    
+    for(atual= lista->prim; atual != NULL; atual=atual->prox){
+        distAtual = calculaDistancia(retornaLocalCuidador(atual->cuidador),retornaLocalIdoso(idoso));
+
+        if(distAtual < menorDistancia){
+            cuidadorProximo = retornaNomeCuidador(atual->cuidador);
+            menorDistancia = distAtual;
+        }
+    }
+    return cuidadorProximo;
 }
 
 void retiraCuidadorPorNome(ListCuidador* lista,char* nome){

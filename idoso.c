@@ -15,7 +15,6 @@ struct idoso
     char* nome;
     float temperatura;
     int queda;
-    int morte;
     int contaFebre;
     Localizacao* local;
     ListCuidador* cuidadores;
@@ -31,7 +30,6 @@ Idoso* inicIdoso(char* nome){
     idoso->nome = strdup(nome);
     idoso->temperatura= 0;
     idoso->queda = 0;
-    idoso->morte = 0;
     idoso->contaFebre = 0;
     idoso->local = inicLocal(0, 0);
 
@@ -54,18 +52,18 @@ Idoso* inicIdoso(char* nome){
 }
 
 void atualizaIdoso(Idoso* idoso){
-    char* entrada, *dado;
+    char* dado;
+    char entrada[50];
     float lat,lon;
-    int aux;
     fscanf(idoso->arqEnt,"%s",entrada);
     //verifica se idoso morreu
-    if(!strcmp(entrada,"falecimento")){
-        idoso->morte = 1;
-        printf("%s morreu\n", idoso->nome);
+    if(strcmp(entrada,"falecimento")==0){
+        //chamar função para matar o idoso
+        fprintf(idoso->arqSaida,"%s morreu\n", idoso->nome);
         return;
     }
     //se está vivo, lê as entradas sensoriadas
-    dado = strtok(entrada,";");//obtem a temperatura
+    dado = strtok(entrada,";");
     idoso->temperatura = atof(dado);
 
     dado = strtok(NULL,";"); //obtem a latitude
@@ -74,15 +72,45 @@ void atualizaIdoso(Idoso* idoso){
     lon = atof(dado);
     atualizaLocalizacao(idoso->local,lat,lon);
 
-    dado = strtok(NULL,"\n");//obtem o verificador de queda
+    dado = strtok(NULL,";");//obtem o verificador de queda
     idoso->queda = atoi(dado);
-    //printf("%d", idoso->queda);
-
-    //VERIFICAR SE OS DADOS OBTIDOS FORAM COMPATÍVEIS!!
-    printf("%s: %d, %.2f, %.2f, %.2f\n",idoso->nome, idoso->queda, idoso->temperatura,retornaLatitude(idoso->local),retornaLongitude(idoso->local));
+    
     return;
 }
 
+void processaDadosIdoso(Idoso* idoso){
+    //esta função ja considera que o idoso está vivo
+    //verifica se o idoso caiu: chama cuidador
+    if(idoso->queda){
+        //verificar se houve febre baixa para atualizar o contador
+        if(idoso->temperatura > 37 && idoso->temperatura < 38){
+            idoso->contaFebre++;
+        }
+        //chamar o cuidador mais proximo!
+        fprintf(idoso->arqSaida,"queda, acionou %s\n", obtemCuidadorMaisProximo(idoso->cuidadores, idoso));
+        return;
+    }
+
+    //verifica se o idoso está com febre alta: chama cuidador
+    else if(idoso->temperatura >= 38){
+        //chama o cuidador mais próximo
+        fprintf(idoso->arqSaida,"febre alta, acionou %s\n", obtemCuidadorMaisProximo(idoso->cuidadores,idoso));
+        return;
+    }
+
+    //verifica se o idoso está com febre baixa: chama amigo(exceto na quarta vez)
+    else if(idoso->temperatura > 37){
+        idoso->contaFebre++;
+        if(idoso->contaFebre == 4){
+            //chama o cuidador mais proximo
+            fprintf(idoso->arqEnt,"febre baixa pela quarta vez, acionou %s\n", obtemCuidadorMaisProximo(idoso->cuidadores, idoso));
+        }
+        else fprintf(idoso->arqSaida,"febre baixa, acionou amigo %s\n",obtemAmigoMaisProximo(idoso->amigos,idoso));
+        return;
+    }
+    //no caso comum, o idoso está bem
+    fprintf(idoso->arqSaida,"tudo ok\n");
+}
 
 void imprimeIdoso(Idoso* idoso){
     printf("NOME: %s\n", idoso->nome);
@@ -99,6 +127,10 @@ ListCuidador* obtemCuidadoresIdoso(Idoso* idoso){
 
 char* retornaNomeIdoso(Idoso* idoso){
     return idoso->nome;
+}
+
+Localizacao* retornaLocalIdoso(Idoso* idoso){
+    return idoso->local;
 }
 
 void destroi_Idoso(Idoso* idoso){

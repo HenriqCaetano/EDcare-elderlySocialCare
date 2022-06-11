@@ -13,6 +13,10 @@ void insereIdoso(ListIdoso* lista, Idoso* idoso);
 
 void atualizaDadosListaIdoso(ListIdoso* lista);
 
+void processaDadosListaIdoso(ListIdoso* lista);
+
+char* obtemAmigoMaisProximo(ListIdoso* lista, Idoso* idoso);
+
 Idoso* buscaIdoso(ListIdoso* lista, char* nome);
 
 void imprimeListaIdosos(ListIdoso* lista);

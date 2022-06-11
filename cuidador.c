@@ -34,7 +34,8 @@ void imprimeCuidador(Cuidador* cuidador){
 }
 
 void atualizaCuidador(Cuidador* cuidador){
-    char* entrada, *dado;
+    char entrada[50];
+    char* dado;
     float lat,lon;
     fscanf(cuidador->arqEnt,"%s", entrada);
     
@@ -44,8 +45,6 @@ void atualizaCuidador(Cuidador* cuidador){
     lon = atof(dado);
     atualizaLocalizacao(cuidador->local,lat,lon);
 
-    //VERIFICAR SE OS DADOS OBTIDOS FORAM COMPATÍVEIS!!
-    printf("atualizou %s\n",cuidador->nome);
     return;
 }
 
@@ -53,10 +52,15 @@ char* retornaNomeCuidador(Cuidador* cuidador){
     return cuidador->nome;
 }
 
+Localizacao* retornaLocalCuidador(Cuidador* cuidador){
+    return cuidador->local;
+}
+
 void destroiCuidador(Cuidador* cuidador){
     if(cuidador != NULL){
         free(cuidador->nome);
         destroiLocal(cuidador->local);
+        fclose(cuidador->arqEnt);
         free(cuidador);
     }
 }
