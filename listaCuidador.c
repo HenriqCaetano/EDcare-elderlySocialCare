@@ -76,7 +76,7 @@ Cuidador* buscaCuidador(ListCuidador* lista, char* nome){
 
 char* obtemCuidadorMaisProximo(ListCuidador* lista, Idoso* idoso){
     CelulaC* atual;
-    float menorDistancia = 9999;//pode dar problema, talvez um valor maior resolve
+    float menorDistancia = __INT_MAX__;//pode dar problema, talvez um valor maior resolve
     float distAtual;
     char* cuidadorProximo;
     

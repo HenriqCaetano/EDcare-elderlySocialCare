@@ -7,17 +7,17 @@
 #define _GNU_SOURCE
 #include <string.h>
 
-#define entradas "./Testes/Testes/Teste2/Entradas"
+#define entradas "./Testes/Testes/Teste6/Entrada"
 
 
 int main(int argc, char* argv[]){
+
     if(argc == 1){
         printf("Necessário número de entradas sensoriadas!\n");
         return 1;
     }
 
     char *atual, *prox, input[50];
-
     //duas listas mestres!
     ListIdoso* idosos = inicListaIdoso();
     ListCuidador* cuidadores = inicListaCuidador();
@@ -87,7 +87,7 @@ int main(int argc, char* argv[]){
 
     
     //neste momento, a rede está configurada e pronta para as entradas sensoriadas!
-
+    
     int i, sensoriadas;
     sensoriadas = atoi(argv[1]);
     //ciclo de leituras!

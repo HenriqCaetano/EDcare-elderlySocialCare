@@ -80,7 +80,7 @@ void processaDadosListaIdoso(ListIdoso* lista){
 
 char* obtemAmigoMaisProximo(ListIdoso* lista, Idoso* idoso){
     CelulaI* atual;
-    float menorDistancia = 99999999;//pode dar problema, talvez um valor maior resolve
+    float menorDistancia = __INT_MAX__;//pode dar problema, talvez um valor maior resolve
     float distAtual;
     char* amigoProximo;
     
@@ -200,8 +200,6 @@ void destroiListaIdoso(ListIdoso* lista){
 void desfazAmizades(ListIdoso* amigos, char* nomeFalecido){
     CelulaI* atual;
     ListIdoso* listAtual;
-    
-    
     //percorre a lista de amigos do idoso falecido
     for(atual = amigos->prim; atual != NULL; atual = atual->prox){
         //dentro de cada amigo, acessa a lista de amigos

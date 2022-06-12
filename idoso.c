@@ -7,8 +7,8 @@
 #include "listaIdoso.h"
 #include "listaCuidador.h"
 
-#define input "./Testes/Testes/Teste2/Entradas/"
-#define output "./Testes/Testes/Teste2/outputs/"
+#define input "./Testes/Testes/Teste6/Entrada/"
+#define output "./Testes/Testes/Teste6/"
 
 struct idoso
 {
@@ -60,15 +60,16 @@ void atualizaIdoso(Idoso* idoso){
     char* dado;
     char entrada[50];
     float lat,lon;
-    fscanf(idoso->arqEnt,"%s",entrada);
     //verifica se idoso morreu
-    if(strcmp(entrada,"falecimento")==0){
+    fscanf(idoso->arqEnt,"%s",entrada);
+    if(strcmp(entrada,"falecimento") == 0){
         //chamar função para matar o idoso
         
         faleceIdoso(idoso);
-        fprintf(idoso->arqSaida,"falecimento\n");
+        fprintf(idoso->arqSaida,"falecimento\n");//como pode isso dar erro?
         return;
     }
+    
     //se está vivo, lê as entradas sensoriadas
     dado = strtok(entrada,";");
     idoso->temperatura = atof(dado);
@@ -86,6 +87,7 @@ void atualizaIdoso(Idoso* idoso){
 }
 
 void processaDadosIdoso(Idoso* idoso){
+    
     if(idoso->morte) return; //se idoso estiver morto, não faz nada
 
     //verifica se o idoso caiu: chama cuidador
@@ -93,7 +95,7 @@ void processaDadosIdoso(Idoso* idoso){
         //verificar se houve febre baixa para atualizar o contador
         if(idoso->temperatura > 37 && idoso->temperatura < 38){
             idoso->contaFebre++;
-            if(idoso->contaFebre == 4) idoso->contaFebre = 0;
+            if(idoso->contaFebre >= 4) idoso->contaFebre = 0;
         }
         //chamar o cuidador mais proximo!
         fprintf(idoso->arqSaida,"queda, acionou %s\n", obtemCuidadorMaisProximo(idoso->cuidadores, idoso));
@@ -109,14 +111,14 @@ void processaDadosIdoso(Idoso* idoso){
     //verifica se o idoso está com febre baixa: chama amigo(exceto na quarta vez)
     else if(idoso->temperatura > 37){
         idoso->contaFebre++;
-        if(idoso->contaFebre == 4){
+        if(idoso->contaFebre >= 4){
             //chama o cuidador mais proximo
             fprintf(idoso->arqSaida,"febre baixa pela quarta vez, acionou %s\n", obtemCuidadorMaisProximo(idoso->cuidadores, idoso));
             idoso->contaFebre = 0;
         }
         else {
             if(verificaListaVazia(idoso->amigos)){
-                fprintf(idoso->arqSaida,"Febre baixa mas, infelizmente, o idoso está sem amigos na rede");
+                fprintf(idoso->arqSaida,"Febre baixa mas, infelizmente, o idoso está sem amigos na rede\n");
                 return;
             }
             fprintf(idoso->arqSaida,"febre baixa, acionou amigo %s\n",obtemAmigoMaisProximo(idoso->amigos,idoso));

@@ -5,7 +5,7 @@
 #include "local.h"
 #include <stdio.h>
 
-#define input "./Testes/Testes/Teste2/Entradas/"
+#define input "./Testes/Testes/Teste6/Entrada/"
 
 struct cuidador{
     Localizacao* local;
