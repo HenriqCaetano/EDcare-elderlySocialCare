@@ -7,7 +7,7 @@
 #define _GNU_SOURCE
 #include <string.h>
 
-#define entradas "./Testes/Testes/Teste1/Entradas"
+#define entradas "./Testes/Testes/Teste2/Entradas"
 
 
 int main(int argc, char* argv[]){
@@ -15,7 +15,6 @@ int main(int argc, char* argv[]){
         printf("Necessário número de entradas sensoriadas!\n");
         return 1;
     }
-
 
     char *atual, *prox, input[50];
 
@@ -86,6 +85,7 @@ int main(int argc, char* argv[]){
     }
     fclose(arqCuidadores);//finaliza o uso do arquivo de apoio
 
+    
     //neste momento, a rede está configurada e pronta para as entradas sensoriadas!
 
     int i, sensoriadas;

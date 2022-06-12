@@ -80,7 +80,7 @@ void processaDadosListaIdoso(ListIdoso* lista){
 
 char* obtemAmigoMaisProximo(ListIdoso* lista, Idoso* idoso){
     CelulaI* atual;
-    float menorDistancia = 9999;//pode dar problema, talvez um valor maior resolve
+    float menorDistancia = 99999999;//pode dar problema, talvez um valor maior resolve
     float distAtual;
     char* amigoProximo;
     
@@ -145,7 +145,7 @@ void cria_AmizadeIdosos(ListIdoso* lista, char* amigo1, char* amigo2){
 
 void retiraIdosoPorNome(ListIdoso* lista, char* nome){
     CelulaI* p, *ant;
-
+    
     for(p = lista->prim; p!= NULL; p = p->prox){
         if(strcmp(nome, retornaNomeIdoso(p->idoso)) == 0){
             break;
@@ -160,6 +160,7 @@ void retiraIdosoPorNome(ListIdoso* lista, char* nome){
         lista->prim = NULL;
         lista->ult = NULL;
         free(p);
+        return;
     }
 
     //caso primeiro da lista
@@ -193,4 +194,26 @@ void destroiListaIdoso(ListIdoso* lista){
         free(p);
     }
     free(lista);
+}
+
+//função para processar um falecimento 
+void desfazAmizades(ListIdoso* amigos, char* nomeFalecido){
+    CelulaI* atual;
+    ListIdoso* listAtual;
+    
+    
+    //percorre a lista de amigos do idoso falecido
+    for(atual = amigos->prim; atual != NULL; atual = atual->prox){
+        //dentro de cada amigo, acessa a lista de amigos
+        listAtual = obtemAmigosIdoso(atual->idoso);
+        //faz a retirada do falecido
+        retiraIdosoPorNome(listAtual,nomeFalecido);
+    }
+    return;
+    //aqui, as listas de amigos dos amigos do falecido já não possuem o falecido!
+}
+
+int verificaListaVazia(ListIdoso* lista){
+    if(!lista->prim && !lista->ult) return 1;
+    else return 0;
 }

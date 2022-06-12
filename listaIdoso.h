@@ -27,4 +27,8 @@ void retiraIdosoPorNome(ListIdoso* lista, char* nome);
 
 void destroiListaIdoso(ListIdoso* lista);
 
+void desfazAmizades(ListIdoso* amigos, char* nomeFalecido);
+
+int verificaListaVazia(ListIdoso* lista);
+
 #endif
