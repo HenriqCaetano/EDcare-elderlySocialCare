@@ -19,7 +19,7 @@ struct listaIdoso{
 
 
 ListIdoso* inicListaIdoso(){
-    ListIdoso* lista = (ListIdoso*)malloc(sizeof(ListIdoso));
+    ListIdoso* lista = (ListIdoso*) malloc(sizeof(ListIdoso));
     
     lista->prim = NULL;
     lista->ult = NULL;
@@ -185,12 +185,23 @@ void retiraIdosoPorNome(ListIdoso* lista, char* nome){
 
 
 //libera o idoso junto, uso na lista mestre do programa
+void destroiListaMestreIdoso(ListIdoso* lista){
+    CelulaI* p, *temp;
+    
+    for(p= lista->prim;p != NULL; p = temp){
+        temp = p->prox;
+        destroi_Idoso(p->idoso);
+        free(p);
+    }
+    free(lista);
+}
+
+//não libera os elementos, apenas a lista
 void destroiListaIdoso(ListIdoso* lista){
     CelulaI* p, *temp;
 
     for(p= lista->prim;p != NULL; p = temp){
         temp = p->prox;
-        destroi_Idoso(p->idoso);
         free(p);
     }
     free(lista);

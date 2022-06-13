@@ -24,6 +24,8 @@ void retiraCuidadorPorNome(ListCuidador* lista,char* nome);
 
 void imprimeListaCuidador(ListCuidador* lista);
 
+void destroiListaMestreCuidador(ListCuidador* lista);
+
 void destroiListaCuidador(ListCuidador* lista);
 
 #endif

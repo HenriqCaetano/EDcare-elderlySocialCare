@@ -103,11 +103,9 @@ int main(int argc, char* argv[]){
         //função para processar e escrever saídas - recebe a lista mestre de idosos!
         processaDadosListaIdoso(idosos);
     }
-
-    
-
-
-    //destroiListaCuidador(cuidadores);
-    //destroiListaIdoso(idosos);
+    //destroi todos os idosos e cuidadores que estiverem dentro das listas mestres
+    destroiListaMestreIdoso(idosos);
+    destroiListaMestreCuidador(cuidadores);
+    printf("aqui\n");
     return 0;
 }

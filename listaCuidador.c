@@ -137,12 +137,22 @@ void imprimeListaCuidador(ListCuidador* lista){
         imprimeCuidador(p->cuidador);
 }
 
-void destroiListaCuidador(ListCuidador* lista){
+void destroiListaMestreCuidador(ListCuidador* lista){
     CelulaC* p, *temp;
 
     for(p= lista->prim;p != NULL; p = temp){
         temp = p->prox;
         destroiCuidador(p->cuidador);
+        free(p);
+    }
+    free(lista);
+}
+
+void destroiListaCuidador(ListCuidador* lista){
+    CelulaC* p, *temp;
+
+    for(p= lista->prim;p != NULL; p = temp){
+        temp = p->prox;
         free(p);
     }
     free(lista);

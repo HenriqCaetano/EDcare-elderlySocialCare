@@ -38,7 +38,7 @@ Idoso* inicIdoso(char* nome){
     idoso->cuidadores = inicListaCuidador();
     idoso->amigos = inicListaIdoso();
 
-    char in[100] = "\0", out[100] = "\0";
+    char in[1000] = "\0", out[1000] = "\0";
     strcat(in,input);
     strcat(in,nome);
     strcat(in,".txt");
@@ -58,7 +58,7 @@ void atualizaIdoso(Idoso* idoso){
     if(idoso->morte) return;
 
     char* dado;
-    char entrada[50];
+    char entrada[500];
     float lat,lon;
     //verifica se idoso morreu
     fscanf(idoso->arqEnt,"%s",entrada);
@@ -109,7 +109,7 @@ void processaDadosIdoso(Idoso* idoso){
     }
 
     //verifica se o idoso está com febre baixa: chama amigo(exceto na quarta vez)
-    else if(idoso->temperatura > 37){
+    else if(idoso->temperatura >= 37){
         idoso->contaFebre++;
         if(idoso->contaFebre >= 4){
             //chama o cuidador mais proximo
@@ -156,6 +156,10 @@ void destroi_Idoso(Idoso* idoso){
         destroiListaCuidador(idoso->cuidadores);
         destroiListaIdoso(idoso->amigos);
         free(idoso->nome);
+
+        fclose(idoso->arqEnt);
+        fclose(idoso->arqSaida);
+
         free(idoso);
     }
 }   

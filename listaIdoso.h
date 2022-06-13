@@ -25,6 +25,8 @@ void cria_AmizadeIdosos(ListIdoso* lista, char* amigo1, char* amigo2);
 
 void retiraIdosoPorNome(ListIdoso* lista, char* nome);
 
+void destroiListaMestreIdoso(ListIdoso* lista);
+
 void destroiListaIdoso(ListIdoso* lista);
 
 void desfazAmizades(ListIdoso* amigos, char* nomeFalecido);
