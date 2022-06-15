@@ -38,17 +38,17 @@ Idoso* inicIdoso(char* nome){
     idoso->cuidadores = inicListaCuidador();
     idoso->amigos = inicListaIdoso();
 
-    char in[1000] = "\0", out[1000] = "\0";
-    strcat(in,input);
-    strcat(in,nome);
-    strcat(in,".txt");
+    char *in, *out;
 
-    strcat(out,output);
-    strcat(out,nome);
-    strcat(out,"-saida.txt");
+    sprintf(in,"%s%s.txt",input,nome);
+
+    sprintf(out,"%s%s-saida.txt",out,nome);
 
     idoso->arqEnt = fopen(in,"r");
     idoso->arqSaida = fopen(out,"w");
+
+    sprintf(in,"");
+    sprintf(out,"");
 
     return idoso;
 }
