@@ -19,19 +19,23 @@ Localizacao* inicLocal(float latitude, float longitude){
 }
 
 float retornaLatitude(Localizacao* local){
+    if(!local) exit(1);
     return local->latitude;
 }
 
 float retornaLongitude(Localizacao* local){
+    if(!local) exit(1);
     return local->longitude;
 }
 
 void atualizaLocalizacao(Localizacao* local,float latitude, float longitude){
+    if(!local) return;
     local->latitude = latitude;
     local->longitude = longitude;
 }
 
 float calculaDistancia(Localizacao* prim, Localizacao* seg){
+    if(!prim || !seg) exit(1);
     return  sqrt(pow((prim->latitude - seg->latitude),2) + pow((prim->longitude - seg->longitude),2));
 }
 

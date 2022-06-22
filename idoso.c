@@ -38,30 +38,30 @@ Idoso* inicIdoso(char* nome){
     idoso->cuidadores = inicListaCuidador();
     idoso->amigos = inicListaIdoso();
 
-    char *in, *out;
+    char in[500], out[500];
 
     sprintf(in,"%s%s.txt",input,nome);
-
-    sprintf(out,"%s%s-saida.txt",out,nome);
+    sprintf(out,"%s%s-saida.txt",output,nome);
 
     idoso->arqEnt = fopen(in,"r");
     idoso->arqSaida = fopen(out,"w");
 
-    sprintf(in,"");
-    sprintf(out,"");
+    sprintf(in," ");
+    sprintf(out," ");
 
     return idoso;
 }
 
 void atualizaIdoso(Idoso* idoso){
+    if(!idoso) return;
     //se o idoso estiver morto, não faz nada.
     if(idoso->morte) return;
 
     char* dado;
     char entrada[500];
     float lat,lon;
-    //verifica se idoso morreu
     fscanf(idoso->arqEnt,"%s",entrada);
+    //verifica se idoso morreu
     if(strcmp(entrada,"falecimento") == 0){
         //chamar função para matar o idoso
         
@@ -87,7 +87,7 @@ void atualizaIdoso(Idoso* idoso){
 }
 
 void processaDadosIdoso(Idoso* idoso){
-    
+    if(!idoso) return;
     if(idoso->morte) return; //se idoso estiver morto, não faz nada
 
     //verifica se o idoso caiu: chama cuidador
@@ -130,23 +130,28 @@ void processaDadosIdoso(Idoso* idoso){
 }
 
 void imprimeIdoso(Idoso* idoso){
+    if(!idoso) return;
     printf("NOME: %s\n", idoso->nome);
 }
 
 ListIdoso* obtemAmigosIdoso(Idoso* idoso){
+    if(!idoso) exit(1);
     return idoso->amigos;
 }
 
 ListCuidador* obtemCuidadoresIdoso(Idoso* idoso){
+    if(!idoso) exit(1);
     return idoso->cuidadores;
 }
 
 
 char* retornaNomeIdoso(Idoso* idoso){
+    if(!idoso) exit(1);
     return idoso->nome;
 }
 
 Localizacao* retornaLocalIdoso(Idoso* idoso){
+    if(!idoso) exit(1);
     return idoso->local;
 }
 
@@ -164,8 +169,8 @@ void destroi_Idoso(Idoso* idoso){
     }
 }   
 void faleceIdoso(Idoso* idoso){
+    if(!idoso) return;
     //torna o idoso morto
-    
     idoso->morte = 1;
     //função que recebe a lista de amigos, acessa cada lista de amigos de cada amigo e retira o idoso morto
     desfazAmizades(idoso->amigos,idoso->nome);

@@ -29,6 +29,7 @@ ListIdoso* inicListaIdoso(){
 
 //recebe o nome de um idoso e cria o tipo idoso dentro da função
 void insereElemento(ListIdoso* lista, char* nome){
+    if(!lista) return;
     Idoso* idoso = inicIdoso(nome);
     CelulaI* nova = (CelulaI*)malloc(sizeof(CelulaI));
     nova->idoso = idoso;
@@ -46,6 +47,7 @@ void insereElemento(ListIdoso* lista, char* nome){
 
 //recebe um idoso já criado e insere na lista
 void insereIdoso(ListIdoso* lista, Idoso* idoso){
+    if(!lista || !idoso) return;
     CelulaI* nova = (CelulaI*)malloc(sizeof(CelulaI));
     nova->idoso = idoso;
     nova->prox = NULL;
@@ -61,6 +63,7 @@ void insereIdoso(ListIdoso* lista, Idoso* idoso){
 }
 
 void atualizaDadosListaIdoso(ListIdoso* lista){
+    if(!lista) return;
     CelulaI* atual;
     for(atual=lista->prim; atual != NULL; atual=atual->prox){
         //função que atualiza um idoso
@@ -70,6 +73,7 @@ void atualizaDadosListaIdoso(ListIdoso* lista){
 }
 
 void processaDadosListaIdoso(ListIdoso* lista){
+    if(!lista) return;
     CelulaI* atual;
 
     for(atual = lista->prim; atual != NULL; atual = atual->prox){
@@ -79,6 +83,7 @@ void processaDadosListaIdoso(ListIdoso* lista){
 }
 
 char* obtemAmigoMaisProximo(ListIdoso* lista, Idoso* idoso){
+    if(!lista || !idoso) exit(1);
     CelulaI* atual;
     float menorDistancia = __INT_MAX__;//pode dar problema, talvez um valor maior resolve
     float distAtual;
@@ -96,6 +101,7 @@ char* obtemAmigoMaisProximo(ListIdoso* lista, Idoso* idoso){
 }
 
 Idoso* buscaIdoso(ListIdoso* lista, char* nome){
+    if(!lista) exit(1);
     CelulaI *p;
 
     for(p = lista->prim; p!= NULL; p=p->prox){
@@ -107,6 +113,7 @@ Idoso* buscaIdoso(ListIdoso* lista, char* nome){
 }
 
 void imprimeListaIdosos(ListIdoso* lista){
+    if(!lista) return;
     CelulaI* p = lista->prim;
 
     for(p = lista->prim; p!= NULL; p = p->prox)
@@ -116,6 +123,7 @@ void imprimeListaIdosos(ListIdoso* lista){
 
 
 void cria_AmizadeIdosos(ListIdoso* lista, char* amigo1, char* amigo2){
+    if(!lista) return;
     CelulaI  *ids1, *ids2;
 
     for(ids1 = lista->prim; ids1!= NULL; ids1 = ids1->prox){
@@ -144,6 +152,7 @@ void cria_AmizadeIdosos(ListIdoso* lista, char* amigo1, char* amigo2){
 }
 
 void retiraIdosoPorNome(ListIdoso* lista, char* nome){
+    if(!lista) return;
     CelulaI* p, *ant;
     
     for(p = lista->prim; p!= NULL; p = p->prox){
@@ -186,6 +195,7 @@ void retiraIdosoPorNome(ListIdoso* lista, char* nome){
 
 //libera o idoso junto, uso na lista mestre do programa
 void destroiListaMestreIdoso(ListIdoso* lista){
+    if(!lista) return;
     CelulaI* p, *temp;
     
     for(p= lista->prim;p != NULL; p = temp){
@@ -198,6 +208,7 @@ void destroiListaMestreIdoso(ListIdoso* lista){
 
 //não libera os elementos, apenas a lista
 void destroiListaIdoso(ListIdoso* lista){
+    if(!lista) return;
     CelulaI* p, *temp;
 
     for(p= lista->prim;p != NULL; p = temp){
@@ -209,6 +220,7 @@ void destroiListaIdoso(ListIdoso* lista){
 
 //função para processar um falecimento 
 void desfazAmizades(ListIdoso* amigos, char* nomeFalecido){
+    if(!amigos) return;
     CelulaI* atual;
     ListIdoso* listAtual;
     //percorre a lista de amigos do idoso falecido
@@ -223,6 +235,7 @@ void desfazAmizades(ListIdoso* amigos, char* nomeFalecido){
 }
 
 int verificaListaVazia(ListIdoso* lista){
+    if(!lista) exit(1);
     if(!lista->prim && !lista->ult) return 1;
     else return 0;
 }

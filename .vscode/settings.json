@@ -2,6 +2,9 @@
     "files.associations": {
         "idoso.h": "c",
         "stdio.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "listaidoso.h": "c",
+        "cuidador.h": "c",
+        "listacuidador.h": "c"
     }
 }

@@ -19,21 +19,25 @@ Cuidador* inic_Cuidador(char* nome){
     cuidador->nome = strdup(nome);
     cuidador->local = inicLocal(0,0);
 
-    char in[100] = "\0";
-    strcat(in,input);
-    strcat(in,nome);
-    strcat(in,".txt");
+    char in[500];
+
+    sprintf(in,"%s%s.txt", input,nome);
 
     cuidador->arqEnt = fopen(in,"r");
+    
+    sprintf(in," ");
 
     return cuidador;
 }
 
 void imprimeCuidador(Cuidador* cuidador){
+    if(!cuidador) return;
     printf("NOME CUIDADOR: %s\n",cuidador->nome);
 }
 
 void atualizaCuidador(Cuidador* cuidador){
+    if(!cuidador) return;
+
     char entrada[50];
     char* dado;
     float lat,lon;
@@ -49,10 +53,13 @@ void atualizaCuidador(Cuidador* cuidador){
 }
 
 char* retornaNomeCuidador(Cuidador* cuidador){
+    if(!cuidador) exit(1);
+
     return cuidador->nome;
 }
 
 Localizacao* retornaLocalCuidador(Cuidador* cuidador){
+    if(!cuidador) exit(1);
     return cuidador->local;
 }
 

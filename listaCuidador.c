@@ -27,6 +27,7 @@ ListCuidador* inicListaCuidador(){
 }
 
 void insere_ElementoCuidador(ListCuidador* lista, char* nome){
+    if(!lista) return;
     Cuidador* cuidador = inic_Cuidador(nome);
     CelulaC* nova = (CelulaC*)malloc(sizeof(CelulaC));
     nova->cuidador = cuidador;
@@ -43,6 +44,7 @@ void insere_ElementoCuidador(ListCuidador* lista, char* nome){
 }
 
 void insereCuidador(ListCuidador* lista, Cuidador* cuidador){
+    if(!lista || !cuidador) return;
     CelulaC* nova = (CelulaC*)malloc(sizeof(CelulaC));
     nova->cuidador = cuidador;
     nova->prox = NULL;
@@ -58,6 +60,7 @@ void insereCuidador(ListCuidador* lista, Cuidador* cuidador){
 }
 
 void atualizaDadosListaCuidador(ListCuidador* lista){
+    if(!lista) return;
     CelulaC* atual;
 
     for(atual = lista->prim; atual != NULL; atual =atual->prox){
@@ -66,6 +69,7 @@ void atualizaDadosListaCuidador(ListCuidador* lista){
 }
 
 Cuidador* buscaCuidador(ListCuidador* lista, char* nome){
+    if(!lista) exit(1);
     CelulaC* p;
 
     for(p=lista->prim; p != NULL; p = p->prox){
@@ -75,8 +79,9 @@ Cuidador* buscaCuidador(ListCuidador* lista, char* nome){
 }
 
 char* obtemCuidadorMaisProximo(ListCuidador* lista, Idoso* idoso){
+    if(!lista || !idoso) exit(1);
     CelulaC* atual;
-    float menorDistancia = __INT_MAX__;//pode dar problema, talvez um valor maior resolve
+    float menorDistancia = __INT_MAX__;
     float distAtual;
     char* cuidadorProximo;
     
@@ -92,6 +97,7 @@ char* obtemCuidadorMaisProximo(ListCuidador* lista, Idoso* idoso){
 }
 
 void retiraCuidadorPorNome(ListCuidador* lista,char* nome){
+    if(!lista) return;
     CelulaC* p, *ant;
 
     for(p = lista->prim; p!= NULL; p = p->prox){
@@ -131,6 +137,7 @@ void retiraCuidadorPorNome(ListCuidador* lista,char* nome){
 }
 
 void imprimeListaCuidador(ListCuidador* lista){
+    if(!lista) return;
     CelulaC* p = lista->prim;
 
     for(p = lista->prim; p!= NULL; p = p->prox)
@@ -138,6 +145,7 @@ void imprimeListaCuidador(ListCuidador* lista){
 }
 
 void destroiListaMestreCuidador(ListCuidador* lista){
+    if(!lista) return;
     CelulaC* p, *temp;
 
     for(p= lista->prim;p != NULL; p = temp){
@@ -149,6 +157,7 @@ void destroiListaMestreCuidador(ListCuidador* lista){
 }
 
 void destroiListaCuidador(ListCuidador* lista){
+    if(!lista) return;
     CelulaC* p, *temp;
 
     for(p= lista->prim;p != NULL; p = temp){

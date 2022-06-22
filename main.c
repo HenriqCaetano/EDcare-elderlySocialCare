@@ -17,8 +17,8 @@ int main(int argc, char* argv[]){
         return 1;
     }
 
-    char *atual, *prox, input[50];
-    //duas listas mestres!
+    char *atual, *prox, input[500];
+    //duas listas mestres
     ListIdoso* idosos = inicListaIdoso();
     ListCuidador* cuidadores = inicListaCuidador();
     
@@ -106,6 +106,5 @@ int main(int argc, char* argv[]){
     //destroi todos os idosos e cuidadores que estiverem dentro das listas mestres
     destroiListaMestreIdoso(idosos);
     destroiListaMestreCuidador(cuidadores);
-    printf("aqui\n");
     return 0;
 }
